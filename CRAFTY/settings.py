@@ -123,10 +123,12 @@ MEDIA_URL = '/media/'
 THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 THUMBNAIL_ALIASES = {
     '': {
-        'avatar': {'size': (128, 128), 'crop': True},
+        'logo': {'size': (50, 50), 'crop': True},
     },
 }
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+JET_SIDE_MENU_COMPACT = True
