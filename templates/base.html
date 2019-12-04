@@ -7,10 +7,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    {% if not user.is_authenticated %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    {% endif %}
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <style>
+        .product-image {
+            object-fit: contain;
+            width: 50px;
+            height: 50px;
+        }
+
+        #products-list td.description {
+            width: 400px;
+        }
+    </style>
     {% block extra_heads %}{% endblock %}
 
 </head>
@@ -18,7 +31,7 @@
 {% if user.is_authenticated %}
     {% include 'navbar.html' %}
 {% endif %}
-  {% block content %}
+{% block content %}
 {% endblock %}
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
