@@ -1,7 +1,15 @@
 from django.contrib import admin
-from main.models import RDV
+
+from main.models import Category, Product
 
 
-@admin.register(RDV)
-class RDVAdmin(admin.ModelAdmin):
-    pass
+class CategoryInline(admin.TabularInline):
+    model = Category
+    extra = 1
+    min_num = 1
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_filter = ('name',)
+    inlines = [CategoryInline]
