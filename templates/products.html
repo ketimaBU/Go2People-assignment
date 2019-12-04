@@ -23,11 +23,18 @@
             <tbody>
             {% for product in object_list %}
                 <tr>
-                    <td><img class="product-image" src="{{ product.photo.url }}"/></td>
+                    <td>
+                        {% if product.photo %}
+                            <img class="product-image" src="{{ product.photo.url }}"/>
+                        {% endif %}
+                    </td>
                     <td>{{ product.name }}</td>
                     <td class="description">{{ product.description|truncatewords:"25" }}</td>
                     <td class="mx-auto">
-                        <img class="product-image" src="{{ product.company.logo.url }}" alt="{{ product.company }}"/>
+                        {% if product.company.logo %}
+                            <img class="product-image" src="{{ product.company.logo.url }}"
+                                 alt="{{ product.company }}"/>
+                        {% endif %}
                         {{ product.company }}
                     </td>
                     <td> {% for category in product.categories.all %}{{ category }}<br/> {% empty %} - {% endfor %}</td>
