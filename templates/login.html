@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <div id="formContent">
+    <div class="fadeIn first">
+      <img src="{% static 'images/icons/favicon.ico' %}" id="icon" alt="CRAFTY Icon"/>
+    </div>
+
+    <form id="login-form" method="post">
+                {% csrf_token %}
+      <input type="text" name="username" id="id_username"  class="fadeIn second" placeholder="Username">
+      <input type="password" id="id_password" class="fadeIn third" name="password" placeholder="Password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+           {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match.
+                        Please try again.
+                    </p>
+                {% endif %}
+    </form>
+    <div id="formFooter">
+      <a class="" href="#">CRAFTY</a>
+    </div>
+  </div>
+{% endblock %}

@@ -21,9 +21,9 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
-    company = models.OneToOneField(Company, on_delete=models.SET_NULL)
+    company = models.OneToOneField(Company, on_delete=models.SET_NULL, null=True)
     photo = models.ImageField(upload_to='products_photos/')
-    category = models.ManyToManyField(Category, blank=True)
+    categories = models.ManyToManyField(Category, related_name='categories')
     schooltype = models.PositiveSmallIntegerField(choices=SCHOOL_TYPES, default=1, blank=True)
     price = models.FloatField()
     expiration_date = models.DateField(auto_now_add=True, db_index=True)
